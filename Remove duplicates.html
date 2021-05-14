@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h2>JavaScript Promises</h2>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <hr />
+    <div>Using Promises in JavaScript</div>
+    <p id="demo3"><div>Value after promise is resolved: <b><span id='value'></span></b></div></p>
+
+    <script>
+      var text = "";
+
+      let myPromise = new Promise((myResolve, myReject) => {
+        setTimeout(() => myResolve("Successful Resolve!"), 5000);
+      });
+      myPromise.then(
+        (value) => (document.getElementById("value").innerText = value)
+      );
+    </script>
+
+    
+  </body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Function Rest Parameter</h2>
+<!-- ----------------------------------------------------------------------- -->
+<hr />
+<p>The rest parameter (...) allows a function to treat an indefinite number of arguments as an array:</p>
+
+<p id="demo"></p>
+
+<script>
+function sum(...args) {
+  let sum = 0;
+  for ( arg of args) sum += arg;
+  return sum;
+}
+function count(...args) {
+ 
+  return args.length;
+}
+
+let x = count(4, 9, 16, 25, 29, 100, 66, 77,3,4,5,6,7,2);
+
+document.getElementById("demo").innerHTML = x;
+</script>
+
+<!-- ----------------------------------------------------------------------- -->
+<hr />
+<p>Using the Array.find() function</p>
+<p id="demo1"></p>
+
+
+<script>
+    var number = [1,4,7,13,26,48,34,56,89];
+    var result = number.find(
+        (value, index, array) => {
+            return value>18;
+        }
+    );
+
+    document.getElementById('demo1').innerHTML=result;
+</script>
+<!-- ----------------------------------------------------------------------- -->
+<hr />
+<p>Using the Array.findIndex() function</p>
+<p id="demo2"></p>
+
+
+<script>
+    var number = [1,4,7,13,26,48,34,56,89];
+    var result = number.findIndex(
+        (value, index, array) => {
+            return value>18;
+        }
+    );
+
+    document.getElementById('demo2').innerHTML=result;
+</script>
+</body>
+</html>

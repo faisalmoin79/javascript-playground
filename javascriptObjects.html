@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h2>javascript Maps</h2>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <hr />
+    <div>Creating a simple Map</div>
+    <p id="demo1"></p>
+    <!-- ----------------------------------------------------------------------- -->
+
+    <hr />
+    <div>Looping through Map</div>
+    <p id="demo2"></p>
+    <!-- ----------------------------------------------------------------------- -->
+
+    <hr />
+    <div>Using Object.keys() , Object.values() & Object.entries()</div>
+    <p id="demo3"></p>
+
+    <!-- ----------------------------------------------------------------------- -->
+
+    <hr />
+    <div>Convert Object to Map and Map to Object</div>
+    <p id="demo4"></p>
+    <p id="demo5"></p>
+    <script>
+      var myMap = new Map([
+        ["firstName", "Faisal"],
+        ["lastName", "Khan"],
+        ["dob", "10/15/1979"],
+      ]);
+
+      var output = JSON.stringify(Array.from(myMap), null, "\t");
+
+      document.getElementById("demo1").innerHTML = output;
+
+      //   ---------------------------------------------
+      var output='';
+      let i=0;
+      myMap.forEach((key, value) => {
+        
+        output+= JSON.stringify(key)+':'+JSON.stringify(value);
+        if(i++ < myMap.size-1){
+          output+=', ';
+        }
+      });
+
+       document.getElementById("demo2").innerHTML = output;
+
+      //   ---------------------------------------------
+      var keys = Object.keys(myMap);
+      var output1 = "<br/>Keys: ".concat(JSON.stringify(Array.from(myMap.keys())));
+      var values = Object.values(myMap);
+      var output2 = "<br/>Values: ".concat(JSON.stringify(Array.from(myMap.values())));
+      var entries = Object.entries(myMap);
+      var output3 = "<br/>Entries: ".concat(JSON.stringify(Array.from(myMap.entries())));
+
+      document.getElementById("demo3").innerHTML = output1
+        .concat(output2)
+        .concat(output3);
+
+         //   ---------------------------------------------
+         var myObj = Object.fromEntries(myMap);
+         document.getElementById('demo4').innerHTML = "Map to object: " + JSON.stringify(myObj);
+
+         var myMap = new Map(Object.entries(myObj));
+         document.getElementById('demo5').innerHTML = "Object to Map: " + JSON.stringify(Array.from(myMap));
+    </script>
+  </body>
+</html>
