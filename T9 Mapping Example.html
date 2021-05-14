@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h2>T9 mapping Example</h2>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <hr />
+    <div>
+      For a phone dial pad: 
+      <div>
+        <img src="./Phone.png"/>
+      </div>  
+    </div>
+    <p>
+      <div>When a number is typed in 
+        <span>
+          <label>Input: </label>
+          <input type="text" name="input" id='input' onkeyup='getT9Mapping()' />
+        </span>, 
+        <div>then all possible matches are : <b><span id='value'></span></b></div> 
+        
+ 
+    </p>
+
+    <script>
+
+      var phonePadMapping = new Map([
+        ['2' , ['a','b', 'c']],
+        ['3' , ['d','e', 'f']],
+        ['4' , ['g','h', 'i']],
+        ['5' , ['j','k', 'l']],
+        ['6' , ['m','n', 'o']],
+        ['7' , ['p','q', 'r', 's']],
+        ['8' , ['t','u', 'v']],
+        ['9' , ['w','x', 'y', 'z']]
+
+    ]);
+
+     
+    console.log(JSON.stringify(Array.from(phonePadMapping.entries())));
+      
+       getT9Mapping = () => {
+        var inputString = document.getElementById('input').value;
+
+        var predictiveSet = new Set();
+
+
+        for(x of inputString){
+          if(phonePadMapping.has(x)){
+            let match = phonePadMapping.get(x);
+            predictiveSet = getPredictiveSet(match);
+            
+          }
+
+        }
+
+        function getPredictiveSet(matchArray){
+          var predictiveArray = []
+          if(predictiveSet.size>0){
+            predictiveSet.forEach(setElement=> {
+              matchArray.forEach(arrayElement=>{
+                predictiveArray.push(setElement+arrayElement);
+              })
+            });
+          }else{
+            predictiveArray = matchArray;
+          }
+          console.log(predictiveArray)
+          return new Set(predictiveArray);
+        }
+
+        var output = JSON.stringify(Array.from(predictiveSet));
+        document.getElementById("value").innerText = output;
+      }
+    </script>
+
+    
+  </body>
+</html>

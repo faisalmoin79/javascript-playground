@@ -49,11 +49,9 @@
        document.getElementById("demo2").innerHTML = output;
 
       //   ---------------------------------------------
-      var keys = Object.keys(myMap);
+
       var output1 = "<br/>Keys: ".concat(JSON.stringify(Array.from(myMap.keys())));
-      var values = Object.values(myMap);
       var output2 = "<br/>Values: ".concat(JSON.stringify(Array.from(myMap.values())));
-      var entries = Object.entries(myMap);
       var output3 = "<br/>Entries: ".concat(JSON.stringify(Array.from(myMap.entries())));
 
       document.getElementById("demo3").innerHTML = output1
