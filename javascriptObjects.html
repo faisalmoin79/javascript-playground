@@ -1,71 +1,87 @@
 <!DOCTYPE html>
 <html>
   <body>
-    <h2>javascript Maps</h2>
+    <h2>javascript Objects </h2>
 
     <!-- ----------------------------------------------------------------------- -->
     <hr />
-    <div>Creating a simple Map</div>
+    <div>
+      Using Objects in JavaScript with functions as properties and
+      JSON.stringify() to convert to String
+    </div>
     <p id="demo1"></p>
     <!-- ----------------------------------------------------------------------- -->
 
     <hr />
-    <div>Looping through Map</div>
+    <div>Using JSON.parse() to parse Objects</div>
     <p id="demo2"></p>
     <!-- ----------------------------------------------------------------------- -->
 
     <hr />
-    <div>Using Object.keys() , Object.values() & Object.entries()</div>
+    <div>Using Object.keys() and Object.values()</div>
     <p id="demo3"></p>
 
-    <!-- ----------------------------------------------------------------------- -->
+        <!-- ----------------------------------------------------------------------- -->
 
-    <hr />
-    <div>Convert Object to Map and Map to Object</div>
-    <p id="demo4"></p>
-    <p id="demo5"></p>
+        <hr />
+        <div>looping object.entries</div>
+        <p id="demo4"></p>
     <script>
-      var myMap = new Map([
-        ["firstName", "Faisal"],
-        ["lastName", "Khan"],
-        ["dob", "10/15/1979"],
-      ]);
+      var myObj = {
+        firstName: "faisal",
+        lastName: "khan",
+        dob: "10/15/1979",
+        age: function () {
+          var now = Date.now();
+          var ageInMs = Date.now() - new Date(this.dob);
+          return Math.abs(new Date(ageInMs).getUTCFullYear() - 1970);
+        },
+        fullName: function () {
+          return this.firstName + " " + this.lastName;
+        },
+      };
 
-      var output = JSON.stringify(Array.from(myMap), null, "\t");
-
+      var output = JSON.stringify(myObj, null, "\t");
+      output = output
+        .concat("<br/>Age: ")
+        .concat(myObj.age())
+        .concat("<br/>Fullname: ")
+        .concat(myObj.fullName());
       document.getElementById("demo1").innerHTML = output;
 
       //   ---------------------------------------------
-      var output='';
-      let i=0;
-      myMap.forEach((key, value) => {
-        
-        output+= JSON.stringify(key)+':'+JSON.stringify(value);
-        if(i++ < myMap.size-1){
-          output+=', ';
-        }
-      });
+      let objString =
+        '{ "firstName": "Nihaal", "lastName": "khan", "dob": "10/15/1979" }';
+      let newObj = JSON.parse(objString);
+      newObj.dob = "11/15/2013";
+      console.dir("newObj: ", newObj);
 
-       document.getElementById("demo2").innerHTML = output;
+      output = JSON.stringify(newObj, null, "\t");
+      document.getElementById("demo2").innerHTML = output;
 
       //   ---------------------------------------------
-      var keys = Object.keys(myMap);
-      var output1 = "<br/>Keys: ".concat(JSON.stringify(Array.from(myMap.keys())));
-      var values = Object.values(myMap);
-      var output2 = "<br/>Values: ".concat(JSON.stringify(Array.from(myMap.values())));
-      var entries = Object.entries(myMap);
-      var output3 = "<br/>Entries: ".concat(JSON.stringify(Array.from(myMap.entries())));
+      var keys = Object.keys(myObj);
+      var output1 = "<br/>Keys: ".concat(JSON.stringify(keys));
+      var values = Object.values(myObj);
+      var output2 = "<br/>Values: ".concat(JSON.stringify(values));
+      var entries = Object.entries(myObj);
+     var output3 = "<br/>Entries: ".concat(JSON.stringify(entries));
 
       document.getElementById("demo3").innerHTML = output1
         .concat(output2)
         .concat(output3);
 
-         //   ---------------------------------------------
-         var myObj = Object.fromEntries(myMap);
-         document.getElementById('demo4').innerHTML = "Map to object: " + JSON.stringify(myObj);
 
-         var myMap = new Map(Object.entries(myObj));
-         document.getElementById('demo5').innerHTML = "Object to Map: " + JSON.stringify(Array.from(myMap));
+      //   ---------------------------------------------
+ 
+      var entries = Object.entries(myObj);
+      var output4='';
+      entries.forEach(element => {
+        output4+='<br/>'+element[0]+': '+element[1];
+      });
+
+      document.getElementById("demo4").innerHTML = output4;
+     
     </script>
   </body>
 </html>

@@ -5,18 +5,38 @@
 
     <!-- ----------------------------------------------------------------------- -->
     <hr />
-    <div>Using Promises in JavaScript</div>
-    <p id="demo3"><div>Value after promise is resolved: <b><span id='value'></span></b></div></p>
+    <div>Write a function that converts a JSON object into a CSV string as below:
+       <br/> Output: 
+       <br/>  'key1, key2; 
+       <br/>  value1, value2;
+    </div>
+    <p i ><div>Solution1: <br/> <b><span id='output1'></span></b></div></p>
+    <p  ><div>Solution2: <br/> <b><span id='output2'></span></b></div></p>
 
     <script>
-      var text = "";
+      var myObj = {
+        firstName: "faisal",
+        lastName: "khan",
+        dob: "10/15/1979"
+      };
+      var output = "";
+      var keysArray = [];
+      var valuesArray = [];
+      var entriesArray = Object.entries(myObj);
 
-      let myPromise = new Promise((myResolve, myReject) => {
-        setTimeout(() => myResolve("Successful Resolve!"), 5000);
+      entriesArray.forEach(entry => {
+        keysArray.push(entry[0]);
+        valuesArray.push(entry[1]);
       });
-      myPromise.then(
-        (value) => (document.getElementById("value").innerText = value)
-      );
+      output = keysArray + ';<br/>'+ valuesArray +';';
+         
+      document.getElementById("output1").innerHTML =  output;
+
+       //   ---------------------------------------------
+      var keysArray = Object.keys(myObj);
+      var valuesArray = Object.values(myObj);
+      document.getElementById("output2").innerHTML =   keysArray + ';<br/>'+ valuesArray +';';
+      
     </script>
 
     

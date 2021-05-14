@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h2>Return Duplicates</h2>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <hr />
+    <div>Array before : <b><span id="before"></span></b></div>
+    <p><div>Uniques: <b><span id='uniques'></span></b></div></p>
+    <p><div>Occurrences: <b><span id='Occurrences'></span></b></div></p>
+    <p><div>Duplicates: <b><span id='duplicates'></span></b></div></p>
+ 
+    <script>
+      var intArray = [1,3,5,7,8,5,45,34,24,6,7,26,45,5];
+      document.getElementById("before").innerHTML = intArray;
+ //   ---------------------------------------------
+      var set = new Set(intArray);
+      var uniqueIntArray = Array.from(set);
+      document.getElementById("uniques").innerHTML =  uniqueIntArray ;
+ //   ---------------------------------------------
+       
+      var output = '';
+      uniqueIntArray.forEach(element => {
+        output += '<br/>'+element +' occurs: '+countInArray(element, intArray)+' times';
+      });
+       
+      function countInArray(element, array){
+        return array.filter(item => element === item).length;
+      }
+ 
+      document.getElementById("Occurrences").innerHTML =  output ;
+  //   ---------------------------------------------
+
+      var duplicateArray = [];
+      function isDuplicate(element, array){
+        return array.filter(item => element === item).length>1;
+      }
+
+      uniqueIntArray.forEach(element => {
+        if(isDuplicate(element, intArray)){
+          duplicateArray.push(element);
+        }
+      });
+      document.getElementById("duplicates").innerHTML =  duplicateArray ;
+ 
+    </script>
+
+    
+  </body>
+</html>
