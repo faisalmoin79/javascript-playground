@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h2>Test</h2>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <hr />
+    <div>Input : <b><span id="input"></span></b></div>
+    <p><div>Output: <b><span id='output'></span></b></div></p>
+ 
+    <script>
+      var output = '';
+      var input = 'AbraCadABraAlakAzam';
+      document.getElementById("input").innerHTML =  input ;
+      var stringArray = input.split('');
+  
+      var lowercaseArray = [];
+      stringArray.forEach(x => lowercaseArray.push(x.toLowerCase()));
+ 
+      console.log('stringarray: ', stringArray)
+      console.log('lowercaseArray: ',lowercaseArray);
+ 
+      var outputArray = [];
+
+      stringArray.forEach(element => {
+        if(!outputArray.includes(element.toUpperCase()) && !outputArray.includes(element.toLowerCase()) ){
+          outputArray.push(element);
+        }else{
+          if(!lowercaseArray.includes(element.toLowerCase())){
+            outputArray.push(element);
+          }
+        }    
+      });
+      document.getElementById("output").innerHTML =  outputArray.join('') ;
+ 
+
+    </script>
+
+    
+  </body>
+</html>
