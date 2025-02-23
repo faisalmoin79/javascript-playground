@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h2>Find Count of Duplicates</h2>
+
+    <!-- ----------------------------------------------------------------------- -->
+    <hr />
+    <div>
+      Array : <b><span id="array"></span></b>
+    </div>
+
+    <script>
+      const intArray = [1, 3, 5, 7, 8, 5, 45, 34, 24, 6, 7, 26, 45, 5];
+      document.getElementById("array").innerHTML = intArray;
+    </script>
+
+    <div>
+      Duplicates in array : <b><span id="duplicates"></span></b>
+    </div>
+
+    <script>
+      let duplicatesMap = new Map();
+      function isDuplicate(array, num) {
+        let duplicates = array.filter((x) => x === num);
+        return duplicates.length;
+      }
+      intArray.forEach((element) => {
+        let duplicateCount = isDuplicate(intArray, element);
+
+        if (duplicateCount > 1) {
+          console.log(element, "is appearing ", duplicateCount, " times");
+          duplicatesMap.set(element, duplicateCount);
+        }
+      });
+
+      document.getElementById("duplicates").innerHTML = JSON.stringify(
+        Array.from(duplicatesMap.entries())
+      );
+    </script>
+  </body>
+</html>
